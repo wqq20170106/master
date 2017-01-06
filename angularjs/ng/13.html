@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>ng-init与ng-trim以及表单中value与$scope数据提交差异分析</title>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body>
+		<div ng-app="hd" ng-controller="ctrl" ng-init="arms='天琊'">
+			{{name}}/{{arms}}
+			<p>ng-init用于临时定义数据，和$scope差不多</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			$scope.name = '陆雪琪';
+		}]);
+	</script>
+</html>

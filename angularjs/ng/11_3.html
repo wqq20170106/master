@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>$scope序列化数据提交</title>
+		<script src="../js/angular.min.js"></script>
+		<script src="../js/jquery.min.js"></script>
+	</head>
+	<body style="padding: 10px;">
+		<div ng-app="hd" ng-controller="ctrl">
+			<form action="" method="post">
+				标题：<input type="text" ng-model="field.title" /><br />
+				点击数：<input type="text" ng-model="field.click" /><br />
+				<textarea name="data"></textarea><br />
+				<input type="submit" />
+			</form>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			$scope.field = {title:'翼汇财',click:100};
+			$('form').submit(function(){
+				$('[name="data"]').val(angular.toJson($scope.field));
+				return false;
+			});
+ 		}]);
+	</script>
+</html>

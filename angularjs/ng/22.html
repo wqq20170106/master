@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>filter变量过滤器</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body style="padding: 10px;">
+		<div ng-app="hd" ng-controller="ctrl">
+			<ul class="list-group">
+				<li class="list-group-item list-group-item-success">
+					<h5>filter过滤器</h5>
+					<p>可以连着写{ {变量|过滤器1|过滤器2} }</p>
+				</li>
+				<li class="list-group-item">
+					<!--currency第一个参数是单位，第二个保留小数点位数（四舍五入）-->
+					货币：{{price|currency:'&yen;':1}}
+				</li>
+				<li class="list-group-item">
+					<!--number第一个参数是保留小数点位数（四舍五入）-->
+					数字：{{price|number:1}}
+				</li>
+				<li class="list-group-item">
+					<!--大小写转换lowercase/uppercase-->
+					小写：{{name|lowercase}}<br/>
+					大写：{{name|uppercase}}
+				</li>
+				<li class="list-group-item">
+					<!--字符串截取{{string|limitTo:longth:position}}-->
+					截取：{{str|limitTo:2:3}}
+				</li>
+				<li class="list-group-item">
+					<!--格式化时间-->
+					时间：{{time|date:'yyyy年MM月dd日 HH:mm:ss'}}
+				</li>
+				<li class="list-group-item">
+					<!--排序orderBy:'字段':true/false(降序/升序)-->
+					{{data|orderBy:'player':false}}
+					<hr />
+					<!--filter过滤，filter:'包含内容':true(第二参数为true个表示完全匹配字符串才行)-->
+					{{data|filter:'天'}}
+					<hr />
+					{{data|filter:'合欢派':true}}
+					<hr />
+					<p>控制器中使用过滤</p>
+					<p>{{data}}</p>
+					<p><input type="button" class="btn btn-success" value="排序" ng-click="orderBy()" /></p>
+				</li>
+				<li class="list-group-item"></li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		/*
+		 * 控制器里使用过滤器需要先注入服务
+		 * $filter('过滤器')(需要过滤的数据,参数...)
+		 * */
+		m.controller('ctrl',['$scope','$filter',function($scope,$filter){
+			$scope.price = '1234.56';
+			$scope.name = 'Taylor Swift';
+			$scope.str = '天地不仁以万物为刍狗!';
+			$scope.time = new Date().getTime();
+			$scope.data = [
+				{id:1,name:'青云门',player:100},
+				{id:2,name:'天音寺',player:200},
+				{id:3,name:'鬼王宗',player:300},
+				{id:4,name:'合欢派',player:400},
+				{id:5,name:'焚香谷',player:500}
+			];
+			$scope.orderBy = function(){
+				$scope.data = $filter('orderBy')($scope.data,'id',true);
+			}
+ 		}]);
+	</script>
+</html>

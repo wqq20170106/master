@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="hd">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>通过ng-style动态改变样式类实例操作</title>
+		<script src="../js/angular.min.js"></script>
+		<link rel="stylesheet" href="../css/bootstrap.min.css"/>
+	</head>
+	<body style="padding: 10px;">
+		<div ng-controller="ctrl">
+			<div class="input-group">
+		      	<div class="input-group-addon">颜色</div>
+		      	<input class="form-control" type="text" ng-model="color"/>
+		    </div><br />
+		    <div class="input-group">
+		      	<div class="input-group-addon">大小</div>
+		      	<input class="form-control" type="number" ng-model="size" />
+		    </div><br />
+			<table class="table table-bordered">
+				<tr>
+					<td>编号</td>
+					<td>姓名</td>
+					<td>法宝</td>
+				</tr>
+				<!--
+					ng-style="{}",里面是json格式数据
+				-->
+				<tr ng-repeat="v in data" ng-style="{color:color,fontSize:size+'px'}">
+					<td>{{v.id}}</td>
+					<td>{{v.name}}</td>
+					<td>{{v.arms}}</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			$scope.data = [
+				{id:1,name:'碧瑶',arms:'伤心花',status:1},
+				{id:2,name:'陆雪琪',arms:'天琊',status:0},
+				{id:3,name:'张小凡',arms:'噬魂',status:1}
+			];
+		}]);
+	</script>
+</html>

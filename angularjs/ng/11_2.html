@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>读取localStorage的数据</title>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body style="padding: 10px;">
+		<div ng-app="hd" ng-controller="ctrl">
+			{{data.name}}
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			var data = localStorage.getItem('data');//jlocalStorage.getItem()得到json字符串
+			$scope.data = angular.fromJson(localStorage.getItem('data'));//json字符串变成对象
+ 		}]);
+	</script>
+</html>

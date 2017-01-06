@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>自定义指令(组件)作用域的关系</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body style="padding: 10px;">
+		<div ng-app="hd" ng-controller="ctrl">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<p>{{name}}</p>2
+					<input type="text" class="form-control" ng-model="name" />
+				</li>
+				<li class="list-group-item">
+					<yhc-clock></yhc-clock>
+				</li>
+				<li class="list-group-item">
+					<yhc-clock></yhc-clock>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.directive('yhcClock',function(){
+			return{
+				restrict:'AE',
+				template:'{{name}}<input type="text" class="form-control" ng-model="name" />',
+				/*
+				 * scope属性在组件和控制器共用数据的时候若为false，一个更新则同时更新，(true/false都会继承控制器)
+				 * 若为true，(跟控制器类似父子关系)组件更新则会为自己创建独立作用域，不再受其他影响，也不影响其他
+				 * 若为{},则不继承控制器，自己独立
+				 */
+				scope:{}
+			}
+		});
+		m.controller('ctrl',['$scope',function($scope){
+			$scope.name = '碧瑶';
+		}]);
+	</script>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>angular的工具</title>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body style="padding: 10px;">
+		<div ng-app="hd" ng-controller="ctrl">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			console.log(angular.version);//版本号
+			console.log(angular.toLowerCase('ROCK'));//转小写
+			console.log(angular.toUpperCase('rovk'));//转大写
+			//angular.copy()深拷贝，不是简单的改变应用地址，而是重生开辟内存
+ 		}]);
+	</script>
+</html>

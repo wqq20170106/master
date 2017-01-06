@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>ng-model绑定表单</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body style="padding: 10px;">
+		<div ng-app="hd" ng-controller="ctrl">
+			标题1：<input class="form-control" type="text" ng-model="title" />
+			标题2：<input class="form-control" type="text" ng-model="news.title" />
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			$scope.title = '';
+			$scope.news = {title:''};
+			//监听变量
+			$scope.$watch('title',function(nVal,oVal){
+				console.log(nVal);
+			});
+			//监听对象
+			$scope.$watch('news',function(nVal,oVal){
+				console.log(nVal);
+			},true);
+ 		}]);
+	</script>
+</html>

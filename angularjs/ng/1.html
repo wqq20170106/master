@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>Angularjs</title>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body>
+		<div ng-app="hd" ng-controller="ctrl">
+			{{name}}
+			<h4 ng-bind="name"></h4>
+			<input type="text" ng-model="name" />
+		</div>
+	</body>
+	<script type="text/javascript">
+		/*
+		 * m--model
+		 * v--view
+		 * c--controller
+		 */
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			//viewModel双向数据绑定
+			$scope.name = 'angular';
+ 		}]);
+	</script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>控制单选框</title>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body>
+		<div ng-app="hd" ng-controller="ctrl">
+			<input type="radio" ng-model="status" ng-value="1" />开启
+			<input type="radio" ng-model="status" ng-value="0" />关闭
+			<!--ng-show里面表达式为true则显示-->
+			<div ng-show="status==0">
+				<h4>关闭原因：</h4>
+				<textarea>翼汇财正在维护中，2：00可以访问</textarea>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			$scope.status = 1;
+		}]);
+	</script>
+</html>

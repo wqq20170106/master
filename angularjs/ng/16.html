@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="hd">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>实现表单的全选与反选</title>
+		<script src="../js/angular.min.js"></script>
+		<link rel="stylesheet" href="../css/bootstrap.min.css"/>
+	</head>
+	<body style="padding: 10px;">
+		<div ng-controller="ctrl">
+			<table class="table table-bordered">
+				<tr>
+					<td>
+						<input type="checkbox" ng-model="all" />
+						<span ng-bind="all?'取消':'全选'"></span>
+					</td>
+					<td>姓名</td>
+					<td>工作</td>
+				</tr>
+				<tr ng-repeat="v in data">
+					<td>
+						<input type="checkbox" ng-checked="all" />
+					</td>
+					<td>{{v.name}}</td>
+					<td>{{v.job}}</td>
+				</tr>
+			</table> 
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			$scope.data = [
+				{name:'王骞',job:'h5攻城狮'},
+				{name:'樊少飞',job:'会计师'},
+				{name:'王帅',job:'C安全攻城狮'},
+				{name:'陶成',job:'ios攻城狮'},
+				{name:'郭乐乐',job:'ios攻城狮'},
+				{name:'袁帅',job:'h5攻城狮'},
+				{name:'张贝贝',job:'会计师'}
+			];
+		}]);
+	</script>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>SPA应用(单页面)与自定义指令(组件)场景使用场景分析</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body style="padding: 10px;">
+		<div ng-app="hd">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<p class="bg-primary">A：attr(属性表现形式)</p>
+					<p zd></p>
+				</li>
+				<li class="list-group-item">
+					<p class="bg-primary">E：element(元素表现形式)</p>
+					<zd></zd>
+				</li>
+				<li class="list-group-item">
+					<p class="bg-primary">C：class(类表现形式)</p>
+					<p class="zd"></p>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.directive('zd',function(){
+			return{
+				restrict:"AEC",//表现形式A:attr(在原来基础扩充建议用)/E:element(独立组件建议用)/C:class(都不建议用)
+				replace:true,
+				template:"<div class='clock'></div>",
+				link:function(scope,element,attrs){
+					setInterval(function(){
+						var d = new Date();
+						element.text(d.toString());
+					});
+				}
+			}
+		});
+	</script>
+</html>

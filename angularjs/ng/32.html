@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>controller控制器scope父子集作用域实例</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body style="padding: 10px;" ng-app="hd">
+		<div ng-controller="ctrl1">
+			变量：{{name}}
+			<input type="text" class="form-control" ng-model="name" />
+			对象：{{data.name}}
+			<input type="text" class="form-control" ng-model="data.name" />
+			<div ng-controller="ctrl2">
+				变量：{{name}}
+				<input type="text" class="form-control" ng-model="name" />
+				对象：{{data.name}}
+				<input type="text" class="form-control" ng-model="data.name" />
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl1',['$scope',function($scope){
+			$scope.name = '陆雪琪';
+			$scope.data = {name:'碧瑶'}
+ 		}]);
+ 		//父控制器包含子控制器，在子控制器里面找不到就回去父级找
+ 		//若子级父级共享父级的变量(子级会复制一份)，父级改变影响子级，但子级改变只影响子级本身(继承隔离)
+ 		//若子级父级共享父级的对象(子级不会复制)，子父级改变会相互影响(继承不隔离)
+ 		m.controller('ctrl2',['$scope',function($scope){
+			//$scope.name = '碧瑶';
+ 		}]);
+	</script>
+</html>

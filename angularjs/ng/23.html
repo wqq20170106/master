@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>callee与过滤器结合制作表格升序降序</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body style="padding: 10px;">
+		<div ng-app="hd" ng-controller="ctrl">
+			<table class="table table-bordered text-center">
+				<tr class="bg-primary">
+					<td ng-click="orderBy('id')">
+						编号
+						<span class="glyphicon glyphicon-arrow-down" ng-if="status.id"></span>
+						<span class="glyphicon glyphicon-arrow-up" ng-if="!status.id"></span>
+					</td>
+					<td ng-click="orderBy('united')">
+						门派
+						<span class="glyphicon glyphicon-arrow-down" ng-if="status.united"></span>
+						<span class="glyphicon glyphicon-arrow-up" ng-if="!status.united"></span>
+					</td>
+					<td ng-click="orderBy('player')">
+						玩家数
+						<span class="glyphicon glyphicon-arrow-down" ng-if="status.player"></span>
+						<span class="glyphicon glyphicon-arrow-up" ng-if="!status.player"></span>
+					</td>
+				</tr>
+				<tr ng-repeat="(k,v) in data">
+					<td>{{v.id}}</td>
+					<td>{{v.united}}</td>
+					<td>{{v.player}}</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope','$filter',function($scope,$filter){
+			$scope.data = [
+				{id:1,united:'青云门',player:100},
+				{id:2,united:'天音寺',player:200},
+				{id:3,united:'鬼王宗',player:300},
+				{id:4,united:'合欢派',player:400},
+				{id:5,united:'焚香谷',player:500}
+			];
+			
+			//记录排序状态
+			$scope.status = {id:false,united:false,player:false}
+			$scope.orderBy = function(field){
+				//1.callee执行完不释放参数，会记录参数的值
+				/*if(arguments.callee[field] == undefined){
+					arguments.callee[field] = false;
+				}
+				arguments.callee[field] = !arguments.callee[field];
+				$scope.data = $filter('orderBy')($scope.data,field,arguments.callee[field]);*/
+				//2.可以用$scope也可以记录状态（例如定义$scope变量）
+				$scope.status[field] = !$scope.status[field];
+				$scope.data = $filter('orderBy')($scope.data,field,$scope.status[field]);
+			};
+ 		}]);
+	</script>
+</html>

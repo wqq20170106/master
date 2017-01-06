@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>angular的比较函数</title>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body style="padding: 10px;">
+		<div ng-app="hd" ng-controller="ctrl">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			console.log(angular.isArray([]));
+			//angular.isDate();
+			//angular.isDefined();
+			//angular.isNumber();
+			//...
+			var a = {name:99};
+			var b = {name:99};
+			console.log('a/b是否相等'+ angular.equals(a,b));
+ 		}]);
+	</script>
+</html>

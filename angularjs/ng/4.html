@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>$scope详解</title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body ng-app="hd" style="padding:10px;">
+		<div ng-controller="ctrl">
+			<p>名字：{{people.attrs.name}}</p>
+			<p>兵器：{{people.attrs.arms}}</p>
+			<p>武力：{{people.attrs.num}}</p>
+			<p>总武力：{{people.attrs.attack*people.attrs.num}}</p>
+			<p>
+				<!--ng-value可以写表达式（可以用在表单里）-->
+				<input type="text" class="form-control" ng-value="people.attrs.attack*people.attrs.num" readonly="readonly"/>
+			</p>
+			<p class="btn-group">
+				<input ng-click="people.red()" type="button" class="btn btn-default" value="减少" />
+				<input ng-click="people.add()" type="button" class="btn btn-success" value="增加" />
+			</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			$scope.people = {
+				attrs:{'name':'陆雪琪','arms':'天琊','attack':100,'num':0},//定义属性
+				add:function(){//定义函数
+					$scope.people.attrs.num = Math.min(++$scope.people.attrs.num,6);
+				},
+				red:function(){
+					$scope.people.attrs.num = Math.max(--$scope.people.attrs.num,0);
+				}
+			}
+		}]);
+	</script>
+</html>

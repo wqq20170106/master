@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="hd">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>Angularjs</title>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body>
+		<div ng-controller="ctrl">
+			{{name}}
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		//$scope是用依赖注入的方式引入，这样写防止压缩出错
+		m.controller('ctrl',['$scope',function($scope){
+			$scope.name = '陆雪琪';
+		}]);
+	</script>
+</html>

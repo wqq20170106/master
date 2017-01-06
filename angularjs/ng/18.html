@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="hd">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>通过ng-class动态改变样式类实例操作</title>
+		<script src="../js/angular.min.js"></script>
+		<link rel="stylesheet" href="../css/bootstrap.min.css"/>
+	</head>
+	<body style="padding: 10px;">
+		<div ng-controller="ctrl">
+			<table class="table table-bordered">
+				<tr>
+					<td>编号</td>
+					<td>姓名</td>
+					<td>法宝</td>
+				</tr>
+				<!--
+					ng-class="{类名:bool}"
+					ng-class-even
+					ng-class-odd
+				-->
+				<tr ng-repeat="v in data" ng-class="{success:v.status==1}">
+					<td>{{v.id}}</td>
+					<td>{{v.name}}</td>
+					<td>{{v.arms}}</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			$scope.data = [
+				{id:1,name:'碧瑶',arms:'伤心花',status:1},
+				{id:2,name:'陆雪琪',arms:'天琊',status:0},
+				{id:3,name:'张小凡',arms:'噬魂',status:1}
+			];
+		}]);
+	</script>
+</html>

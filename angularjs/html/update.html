@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>如何修改数据</title>
+		<style type="text/css">
+			ul.nceditor{
+				list-style:none;
+				padding:10px;
+				margin:0px;
+				width:300px;
+				border:1px solid #787878;
+				line-height:30px;
+			}
+		</style>
+		<script src="js/angular1.5.8.min.js"></script>
+	</head>
+	<body ng-app="ezstuff" ng-init="sb = {name:'somebody',gender:'male',age:28}">
+		<!-- 下面两个指令都绑定到变量sb上-->
+		<ez-namecard-editor data="sb"></ez-namecard-editor>
+		<div ez-logger data="sb"></div>
+	</body>
+	<script src="js/demo.js"></script>
+</html>

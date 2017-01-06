@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>scope隔离作用域之=双向文本绑定</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body style="padding: 10px;">
+		<div ng-app="hd" ng-controller="ctrl">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<input type="text" class="form-control" ng-model="color" />
+					<h4 yhc-clock di-color="color"></h4>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.directive('yhcClock',function(){
+			return{
+				restrict:'AEC',
+				template:'<span style="color:{{color}}">碧瑶</span><input type="text" class="form-control" ng-model="color" />',
+				/*
+				 * 双向绑定用=(取控制器的变量)，此时指令和控制器会相互影响
+				 */
+				scope:{color:'=diColor'}
+			}
+		});
+		m.controller('ctrl',['$scope',function($scope){
+			$scope.color = 'red';
+		}]);
+	</script>
+</html>

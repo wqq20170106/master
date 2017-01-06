@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>ng-if与ng-show,ng-disable...</title>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body>
+		<div ng-app="hd" ng-controller="ctrl" ng-init="arms='天琊'">
+			<input type="checkbox" ng-model="name" />
+			{{name}}
+			<!--ng-show是通过css隐藏显示-->
+			<div ng-show="name">陆雪琪现身！！</div>
+			<!--ng-if是直接把dom给移除了-->
+			<div ng-if="name">陆雪琪现身！！</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			
+		}]);
+	</script>
+</html>

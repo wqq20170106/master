@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>angular操作下拉框</title>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body style="padding: 10px;">
+		<div ng-app="hd" ng-controller="ctrl">
+			<select ng-options="v.value as v.name for v in data" ng-model="name">
+				<option value="">--请选择--</option>
+			</select>
+			<h4>{{name}}</h4>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			$scope.name = '001';
+			$scope.data = [
+				{name:'陆雪琪',value:'001'},
+				{name:'碧瑶',value:'002'},
+				{name:'张小凡',value:'003'},
+				{name:'林惊羽',value:'004'},
+				{name:'金瓶儿',value:'005'},
+			];
+ 		}]);
+	</script>
+</html>

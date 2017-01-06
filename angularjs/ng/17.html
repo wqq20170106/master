@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="hd">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>ng-model-option设置数据同步时提高网站性能</title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css"/>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body style="padding: 10px;">
+		<div ng-controller="ctrl">
+			<!--
+				ng-model-options数据绑定时什么时候更新
+				1.{updateOn:'blur'}失去焦点更新
+				2.{debounce:3000}设置多长时间后更新
+				3.1和2可以混合使用如第三个输入框:失去焦点立刻更新，没失去焦点2s后更新
+			-->
+			<input type="text" ng-model="title" class="form-control" ng-model-options="{updateOn:'blur'}" /><br />
+			<input type="text" ng-model="title" class="form-control" ng-model-options="{debounce:3000}" /><br />
+			<input type="text" ng-model="title" class="form-control" ng-model-options="{updateOn:'default blur',debounce:{default:2000,blur:0}}" /><br />
+			<p class="badge">{{title}}</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			$scope.name = '陆雪琪';
+		}]);
+	</script>
+</html>

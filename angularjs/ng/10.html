@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>angular的工具函数</title>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body style="padding: 10px;">
+		<div ng-app="hd" ng-controller="ctrl">
+			{{person}}
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			var person = {'name':'陆雪琪'};
+			$scope.person = person;
+			//angular.extend()扩充数据对象
+			angular.extend(person,{'arms':'天琊','skills':'神剑御雷真诀'});
+			console.log($scope.person);
+			
+			//遍历
+			var data = [
+				{name:'百度',url:'https//baidu.com'},
+				{name:'翼汇财',url:'https//m.yihuicai.cn'},
+				{name:'京东',url:'https//m.jd.com'}
+			];
+			angular.forEach(data,function(v,k){//遍历数组v对象，k下标，也可以遍历对象k是键，v是值
+				v.url = v.url + '?v=000';
+				console.log(v);
+			});
+ 		}]);
+	</script>
+</html>

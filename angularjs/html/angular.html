@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="data">
+	<head>
+		<meta charset="UTF-8">
+		<title>angular</title>
+		<script src="js/angular.min.js"></script>		
+	</head>
+	<body>
+		<div ng-init="friends = [
+		   {name:'Tom', age:25}, 
+		   {name:'Jerry', age:28},
+		   {name:'John', age:25}, 
+		   {name:'Jim', age:28}]">
+		    <p>repeat遍历dom</p>
+		    <table>
+		   		<tr ng-repeat="x in friends">
+		   			<td>{{'Name:'+ x.name +',Age:'+ x.age}}</td>
+		   		</tr>
+		    </table>
+		    <p>filter，过滤</p>
+		        输入过滤:<input type="text" ng-model="name" >
+		    <ul style="list-style-type:none">
+		        <li>   姓名，年龄</li>
+		        <li  ng-repeat="x in friends | filter:name">   
+		            {{ x.name + ' , ' + x.age }}
+		        </li>
+		    </ul>    
+		</div>
+		<p>angularjs如何像jquery一样操作dom</p>
+		<div id="clock"></div>
+		<p>利用模板、指令来实现小时钟视图</p>
+		<ez-clock></ez-clock>
+		<p>在声明式模板中显示数据,将数据传递给指令</p>
+		<ez-namecard data="window.sb"></ez-namecard>
+	</body>
+	<script src="js/demo.js"></script>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>事件处理指令讲解</title>
+		<script src="../js/angular.min.js"></script>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+	</head>
+	<body style="padding: 10px;">
+		<div ng-app="hd" ng-controller="ctrl">
+			<ul class="list-group">
+				<li class="list-group-item">
+					单击
+					<input type="button" class="btn btn-success" value="登录" ng-click="log()" />
+				</li>
+				<li class="list-group-item">
+					双击(不支持移动端)
+					<input type="button" class="btn btn-success" value="登录" ng-dblclick="log()" />
+				</li>
+				<li class="list-group-item">
+					<input type="text" class="form-control" ng-change="show()" ng-model="title" />
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			$scope.log = function(){
+				console.log(111);
+			};
+		}]);
+	</script>
+</html>

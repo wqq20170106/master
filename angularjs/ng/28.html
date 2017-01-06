@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>自定义指令(组件)命名规范(驼峰)</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body style="padding: 10px;">
+		<div ng-app="hd">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<p class="bg-primary">A：attr(属性表现形式)</p>
+					<p yhc-clock></p>
+				</li>
+				<li class="list-group-item">
+					<p class="bg-primary">E：element(元素表现形式)</p>
+					<yhc-clock></yhc-clock>
+				</li>
+				<li class="list-group-item">
+					<p class="bg-primary">C：class(类表现形式)</p>
+					<p class="yhc-clock"></p>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		//命名规范，指令名字用驼峰，在html里边用时加下火线，例：yhcClock=>yhc-clock
+		m.directive('yhcClock',function(){
+			return{
+				restrict:"AEC",
+				replace:true,
+				template:"<div class='clock'></div>",
+				link:function(scope,element,attrs){
+					setInterval(function(){
+						var d = new Date();
+						element.text(d.toString());
+					});
+				}
+			}
+		});
+	</script>
+</html>

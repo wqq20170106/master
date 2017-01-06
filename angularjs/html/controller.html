@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>controller(控制器)运用</title>
+		<script src="js/angular1.5.8.min.js"></script>
+	</head>
+	<body ng-app="ezstuff">
+		<div ng-controller="ezController">
+			<button ng-click="vm.shuffle();">点一下</button>
+			<div>name : {{vm.sb.name}}</div>
+			<div>gender : {{vm.sb.gender}}</div>
+			<div>age : {{vm.sb.age}}</div>
+			<div>career : {{vm.sb.career}}</div>
+			<div><img ng-src="{{vm.sb.photo}}"></div>
+		</div>
+	</body>
+	<script src="js/demo.js"></script>
+</html>

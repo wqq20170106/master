@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>scope隔离作用域之=&调用父作用域中的函数</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body style="padding: 10px;">
+		<div ng-app="hd" ng-controller="ctrl">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<input type="text" class="form-control" ng-model="color" />
+					<h3 yhc-clock color="{{color}}"></h3>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.directive('yhcClock',function(){
+			return{
+				restrict:'AEC',
+				template:'<span style="color:{{color}}">碧瑶</span>',
+				/*
+				 * 单向绑定用@(取字符串),虽然指令作用域隔离，但是仍然可以通过中间桥梁‘属性’来获取cantroller里面的值
+				 */
+				scope:{color:'@color'}
+			}
+		});
+		m.controller('ctrl',['$scope',function($scope){
+			$scope.color = 'red';
+		}]);
+	</script>
+</html>

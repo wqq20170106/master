@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>控制复选框</title>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body>
+		<div ng-app="hd" ng-controller="ctrl">
+			<!--ng-true-value/ng-false-value可以设置自己设定的选中和非选中的值-->
+			游戏：<input type="checkbox" ng-model="data.game" ng-true-value="1" ng-false-value="0"/>
+			电影：<input type="checkbox" ng-model="data.film" ng-true-value="1" ng-false-value="0"/>
+			<div ng-show="data.game==1">
+				<h4>游戏：</h4>
+				<textarea></textarea>
+			</div>
+			<div ng-show="data.film==1">
+				<h4>电影：</h4>
+				<textarea></textarea>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			$scope.data = {'game':0,'film':0};
+		}]);
+	</script>
+</html>

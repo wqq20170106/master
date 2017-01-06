@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="hd">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>ng-repeat实例详解</title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css"/>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body style="padding: 10px;">
+		<div ng-controller="ctrl">
+			<ul class="list-group">
+				<li class="list-group-item">
+					$first 第一个 $last 最后一个 $middle 中间的
+					$even 偶数行 $odd 偶数行
+				</li>
+				<li class="list-group-item {{$even?'list-group-item-success':''}}" ng-repeat="(k,v) in data">
+					姓名：{{v.name}}<br />
+					工作：{{v.job}}
+				</li>
+				<li class="list-group-item"></li>
+				<li class="list-group-item" ng-repeat="(k,v) in data">
+					<span ng-if="$first" style="{{$first?'color:red':''}}">姓名：{{v.name}}<br />工作：{{v.job}}</span>
+					<span ng-if="$middle" style="{{$first?'color:red':''}}">姓名：{{v.name}}<br />工作：{{v.job}}</span>
+					<span ng-if="$last" style="{{$last?'color:blue':''}}">姓名：{{v.name}}<br />工作：{{v.job}}</span>
+				</li>
+				<li class="list-group-item">遍历数组时angular默认不允许数据重复，若有重复需通过唯一标识$index遍历</li>
+				<li class="list-group-item" ng-repeat="v in data2 track by $index">
+					{{v}}
+				</li>
+			</ul>
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			$scope.data = [
+				{name:'王骞',job:'h5攻城狮'},
+				{name:'王帅',job:'C安全攻城狮'},
+				{name:'陶成',job:'ios攻城狮'},
+				{name:'郭乐乐',job:'ios攻城狮'},
+				{name:'袁帅',job:'h5攻城狮'},
+				{name:'张贝贝',job:'会计师'},
+				{name:'樊少飞',job:'会计师'}
+			];
+			$scope.data2 = ['王骞','王骞','樊少飞','陶成','郭乐乐','王帅','袁帅','张贝贝'];
+		}]);
+	</script>
+</html>

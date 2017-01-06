@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>ng-if与ng-show,ng-disable...</title>
+		<script src="../js/angular.min.js"></script>
+	</head>
+	<body>
+		<div ng-app="hd" ng-controller="ctrl" ng-init="arms='天琊'">
+			<label for="">
+				<input type="checkbox" ng-model="status" />接受协议
+			</label>
+			<button ng-init="copyright=false" ng-click="copyright=!copyright">查看协议</button><br />
+			<textarea style="height: 50px;" ng-if="copyright">
+				协议内容，协议内容，协议内容，协议内容，协议内容。
+			</textarea><br />
+			<button ng-disabled="!status">登录</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			
+		}]);
+	</script>
+</html>
